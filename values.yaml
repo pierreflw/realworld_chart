@@ -1,6 +1,6 @@
 backend:
   image:
-    repository: pierreflw/realworld-backend
+    repository: flauw/realworld-backend
     tag: latest
   port: 3000
   env:
@@ -9,7 +9,7 @@ backend:
 
 frontend:
   image:
-    repository: pierreflw/realworld-frontend
+    repository: flauw/realworld-frontend
     tag: latest
   port: 4100
   env:
