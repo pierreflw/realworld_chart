@@ -1,0 +1,37 @@
+backend:
+  image:
+    repository: pierreflw/realworld-backend
+    tag: latest
+  port: 3000
+  env:
+    DATABASE_URL: postgresql://realworld:realworld@realworld-db:5432/realworld
+
+frontend:
+  image:
+    repository: pierreflw/realworld-frontend
+    tag: latest
+  port: 4100
+  env:
+    REACT_APP_API_URL: http://realworld-backend:3000/api
+
+db:
+  image:
+    repository: postgres
+    tag: "16"
+  port: 5432
+  user: realworld
+  password: realworld
+  name: realworld
+
+ingress:
+  enabled: true
+  ingressClassName: traefik-ingress
+  hosts:
+    - host: app-pfw.duckdns.org
+      paths:
+        - path: /
+          pathType: Prefix
+  tls:
+    - hosts:
+        - app-pfw.duckdns.org
+      secretName: app-tls
