@@ -5,6 +5,8 @@ metadata:
   name: realworld-frontend
   labels:
     app: realworld-frontend
+  annotations:
+    {}
 spec:
   ingressClassName: {{ .Values.ingress.ingressClassName | default "traefik" }}
   rules:
