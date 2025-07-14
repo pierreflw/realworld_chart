@@ -1,6 +1,6 @@
 backend:
   image:
-    repository: flauw/realworld-backend
+    repository: flauw/realworld-backend:latest
     tag: latest
   port: 3000
   env:
@@ -9,11 +9,11 @@ backend:
 
 frontend:
   image:
-    repository: flauw/realworld-frontend
+    repository: flauw/realworld-frontend:latest
     tag: latest
   port: 4100
   env:
-    REACT_APP_API_URL: http://realworld-backend:3000/api
+    REACT_APP_API_URL: https://app-pfw.duckdns.org/api
   replicaCount: 2
 
 db:
