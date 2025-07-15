@@ -19,7 +19,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: realworld-frontend
+                name: realworld-backend
                 port:
                   number: {{ $.Values.frontend.port }}
 
