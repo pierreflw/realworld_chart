@@ -1,19 +1,22 @@
+---
+
 backend:
   image:
-    repository: flauw/realworld-backend:latest
+    repository: flauw/realworld-backend
     tag: latest
   port: 3000
   env:
     DATABASE_URL: postgresql://realworld:realworld@realworld-db:5432/realworld
+    JWT_SECRET: supersecretjwtkey
   replicaCount: 2
 
 frontend:
   image:
-    repository: flauw/realworld-frontend:latest
+    repository: flauw/realworld-frontend
     tag: latest
   port: 4100
   env:
-    REACT_APP_API_URL: https://app-pfw.duckdns.org/api
+    REACT_APP_API_URL: /api
   replicaCount: 2
 
 db:
@@ -24,6 +27,8 @@ db:
   user: realworld
   password: realworld
   name: realworld
+  persistence:
+    size: 1Gi
 
 ingress:
   enabled: true
@@ -32,6 +37,8 @@ ingress:
     - host: app-pfw.duckdns.org
       paths:
         - path: /
+          pathType: Prefix
+        - path: /api
           pathType: Prefix
   tls:
     - hosts:
