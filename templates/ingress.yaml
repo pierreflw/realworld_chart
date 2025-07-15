@@ -14,12 +14,12 @@ spec:
     - host: {{ .host | quote }}
       http:
         paths:
-          # Path pour le frontend
+
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: realworld-backend
+                name: realworld-frontend
                 port:
                   number: {{ $.Values.frontend.port }}
 
@@ -27,7 +27,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: realworld-back
+                name: realworld-backend
                 port:
                   number: 3000
     {{- end }}
