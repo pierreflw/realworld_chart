@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: realworld-backend
+  labels:
+    app: realworld-backend
 spec:
   replicas: {{ .Values.backend.replicaCount }}
   selector:
@@ -20,3 +22,12 @@ spec:
           env:
             - name: DATABASE_URL
               value: "{{ .Values.backend.env.DATABASE_URL }}"
+          lifecycle:
+            postStart:
+              exec:
+                command:
+                  - sh
+                  - -c
+                  - |
+                    echo "⏳ Initialisation Prisma (db push)..."
+                    npx prisma db push || echo "⚠️ Échec du db push"
