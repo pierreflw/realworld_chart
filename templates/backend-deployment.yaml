@@ -31,3 +31,6 @@ spec:
                   - |
                     echo "⏳ Initialisation Prisma (db push)..."
                     npx prisma db push || echo "⚠️ Échec du db push"
+                    echo "🌱 Seeding database..."
+                    npx prisma db seed || echo "⚠️ Échec du db seed"
+
