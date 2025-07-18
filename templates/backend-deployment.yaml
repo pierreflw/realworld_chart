@@ -22,6 +22,8 @@ spec:
           env:
             - name: DATABASE_URL
               value: "{{ .Values.backend.env.DATABASE_URL }}"
+            - name: JWT_SECRET
+              value: "{{ .Values.backend.env.JWT_SECRET }}"
           lifecycle:
             postStart:
               exec:
